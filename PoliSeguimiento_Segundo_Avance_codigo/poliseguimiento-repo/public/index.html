@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PoliSeguimiento — Incremento 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="brand">Poli<span>Seguimiento</span></div>
+
+  <div class="card">
+    <div class="stepper">
+      <div class="step-tab active" id="tab-1"><span class="num">1</span> Buscar</div>
+      <div class="step-tab" id="tab-2"><span class="num">2</span> Estado</div>
+      <div class="step-tab" id="tab-3"><span class="num">3</span> Historial</div>
+    </div>
+
+    <!-- Pantalla 1: Buscar -->
+    <div class="screen" id="screen-1">
+      <h1>Consulta el estado de tu solicitud</h1>
+      <p class="sub">Ejemplo: POL-2026-0417, POL-2026-0512 o POL-2026-0603</p>
+      <div class="row">
+        <input id="radicado" placeholder="Ej. POL-2026-0417" />
+        <button onclick="consultar()">Consultar</button>
+      </div>
+      <div id="error-busqueda"></div>
+      <p class="hint">Datos de prueba (mock) para el Incremento 1. La integración con Registro Académico queda para una iteración posterior.</p>
+    </div>
+
+    <!-- Pantalla 2: Estado actual (incluye la alerta de tiempo) -->
+    <div class="screen hidden" id="screen-2">
+      <h1>Estado actual</h1>
+      <p class="sub">Esto es lo que sabemos de tu solicitud en este momento.</p>
+      <div id="estado-contenido"></div>
+      <div id="reenvio-contenido"></div>
+      <div class="nav-row">
+        <button class="ghost" onclick="goTo(1)">Volver a buscar</button>
+        <button onclick="goTo(3)">Ver historial</button>
+      </div>
+    </div>
+
+    <!-- Pantalla 3: Historial de movimientos -->
+    <div class="screen hidden" id="screen-3">
+      <h1>Historial de movimientos</h1>
+      <p class="sub">Áreas por las que ha pasado tu solicitud, en orden.</p>
+      <div id="historial-contenido"></div>
+      <div class="nav-row">
+        <button class="ghost" onclick="goTo(2)">Volver al estado</button>
+        <button onclick="goTo(1)">Consultar otra solicitud</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let ultimaConsulta = null;
+
+    function claseBadgeDe(estado) {
+      return { pendiente: 'pendiente', trasladada: 'trasladada', 'en revision': 'revision' }[estado] || 'revision';
+    }
+
+    async function consultar() {
+      const radicado = document.getElementById('radicado').value.trim();
+      const errDiv = document.getElementById('error-busqueda');
+      errDiv.innerHTML = 'Consultando...';
+      try {
+        const res = await fetch('/api/solicitudes/' + encodeURIComponent(radicado));
+        const data = await res.json();
+        if (!res.ok) {
+          errDiv.innerHTML = '<p class="error">' + data.mensaje + '</p>';
+          return;
+        }
+        errDiv.innerHTML = '';
+        ultimaConsulta = data;
+        renderEstado(data);
+        renderHistorial(data);
+        renderReenvio(data);
+        goTo(2);
+      } catch (e) {
+        errDiv.innerHTML = '<p class="error">Ocurrió un error al consultar. Intenta de nuevo.</p>';
+      }
+    }
+
+    function renderEstado(data) {
+      const t = data.tiempo;
+      const notaSimulada = t.simulada ? `<br><small>Fecha simulada para la demostración: ${t.fechaReferencia}</small>` : '';
+      const tiempoHtml = t.retrasada
+        ? `<div class="tiempo-box alerta">⚠ Esta solicitud lleva ${t.diasHabilesTranscurridos} días hábiles, por encima de los ${t.diasHabilesEsperados} días esperados para este certificado.${notaSimulada}</div>`
+        : `<div class="tiempo-box ok">Tiempo transcurrido: ${t.diasHabilesTranscurridos} de ${t.diasHabilesEsperados} días hábiles esperados.${notaSimulada}</div>`;
+
+      document.getElementById('estado-contenido').innerHTML = `
+        <p class="ficha-titulo">${data.nombreCertificado}
+          <span class="badge ${claseBadgeDe(data.estado)}">${data.estado}</span></p>
+        <p class="ficha-meta">Radicado ${data.radicado} · Costo 2026: ${data.costo}</p>
+        <p class="ficha-campo"><strong>Área actual:</strong> ${data.areaActual}</p>
+        <p class="ficha-campo">${data.descripcionArea}</p>
+        ${tiempoHtml}
+      `;
+    }
+
+    function renderHistorial(data) {
+      document.getElementById('historial-contenido').innerHTML = `
+        <div class="historial">
+          <ul>
+            ${data.historial.map(h => `<li><strong>${h.area}</strong><br>
+              <span class="fecha">${h.fecha}</span> — ${h.accion}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+    }
+
+    function renderReenvio(data) {
+      const div = document.getElementById('reenvio-contenido');
+      if (data.estado !== 'pendiente') {
+        div.innerHTML = '';
+        return;
+      }
+      div.innerHTML = `
+        <div class="reenvio-box">
+          <p><strong>Esta solicitud requiere una modificación especial.</strong><br>
+          Si ya corregiste el documento, reenvíalo aquí (escribe el nombre del archivo).</p>
+          <div class="row">
+            <input id="nombre-archivo" placeholder="Ej. cedula_corregida.pdf" />
+            <button onclick="reenviar('${data.radicado}')">Reenviar</button>
+          </div>
+          <div id="reenvio-mensaje"></div>
+        </div>
+      `;
+    }
+
+    async function reenviar(radicado) {
+      const nombreArchivo = document.getElementById('nombre-archivo').value.trim();
+      const msgDiv = document.getElementById('reenvio-mensaje');
+      msgDiv.innerHTML = 'Enviando...';
+      try {
+        const res = await fetch('/api/solicitudes/' + encodeURIComponent(radicado) + '/reenvio', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombreArchivo }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          msgDiv.innerHTML = '<p class="error">' + data.mensaje + '</p>';
+          return;
+        }
+        ultimaConsulta = data;
+        renderEstado(data);
+        renderHistorial(data);
+        renderReenvio(data);
+        msgDiv.innerHTML = '';
+      } catch (e) {
+        msgDiv.innerHTML = '<p class="error">Ocurrió un error al reenviar. Intenta de nuevo.</p>';
+      }
+    }
+
+    function goTo(n) {
+      // Las pantallas 2 y 3 necesitan una consulta previa; si no existe, se vuelve a la 1.
+      if ((n === 2 || n === 3) && !ultimaConsulta) n = 1;
+      for (let i = 1; i <= 3; i++) {
+        document.getElementById('screen-' + i).classList.toggle('hidden', i !== n);
+        document.getElementById('tab-' + i).classList.toggle('active', i === n);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "poliseguimiento",
+  "version": "0.1.0",
+  "description": "Incremento 1: consulta del estado de una solicitud de certificado especial por número de radicado.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/solicitudes.test.js",
+    "demo": "node server.js --fecha-demo=2026-10-02"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

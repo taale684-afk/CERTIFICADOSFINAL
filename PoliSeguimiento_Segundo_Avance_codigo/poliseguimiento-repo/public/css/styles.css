@@ -1,0 +1,203 @@
+/* ===== PoliSeguimiento — sistema de diseño =====
+   Identidad: expediente/dossier institucional. Navy + dorado, tipografía
+   serif para títulos (tono de acta oficial) y sans para la interfaz. */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+:root{
+  --ink:#1B2A44;
+  --ink-soft:#2E3B57;
+  --slate:#5B6072;
+  --gold:#B8862E;
+  --gold-soft:#EFE2C6;
+  --sage:#3F6D53;
+  --sage-bg:#E7EFE9;
+  --amber:#A8631F;
+  --amber-bg:#F5E7D3;
+  --brick:#9C4B3B;
+  --brick-bg:#F3E4E0;
+  --line:#DAD5C8;
+  --paper:#F3F0E8;
+  --card:#FFFFFF;
+  --serif:'Source Serif 4', Georgia, serif;
+  --sans:'IBM Plex Sans', -apple-system, Arial, sans-serif;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--ink-soft);
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:48px 16px;
+}
+
+/* Marca */
+.brand{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:20px;
+  color:var(--ink);
+  margin-bottom:24px;
+  letter-spacing:.2px;
+}
+.brand span{ color:var(--gold); }
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-top:4px solid var(--ink);
+  border-radius:3px;
+  padding:32px;
+  width:100%;
+  max-width:460px;
+}
+
+/* Stepper numerado: el contenido sí es una secuencia (Buscar -> Estado -> Historial) */
+.stepper{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:26px;
+}
+.step-tab{
+  flex:1;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-size:12px;
+  color:var(--slate);
+  padding-bottom:10px;
+  border-bottom:2px solid var(--line);
+}
+.step-tab .num{
+  width:20px; height:20px; flex:none;
+  border-radius:50%;
+  border:1.5px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--serif); font-weight:600; font-size:11px;
+  color:var(--slate);
+}
+.step-tab.active{ color:var(--ink); border-bottom-color:var(--ink); font-weight:600; }
+.step-tab.active .num{ background:var(--ink); border-color:var(--ink); color:#fff; }
+
+h1{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:21px;
+  color:var(--ink);
+  margin:0 0 6px;
+  line-height:1.3;
+}
+p.sub{ color:var(--slate); font-size:13px; margin:0 0 22px; line-height:1.5; }
+
+.row{ display:flex; gap:8px; margin-bottom:14px; }
+input{
+  flex:1;
+  padding:11px 12px;
+  border:1px solid var(--line);
+  border-radius:3px;
+  font-size:14px;
+  font-family:var(--sans);
+  background:#FBFAF7;
+  color:var(--ink);
+}
+input:focus{ outline:2px solid var(--gold); outline-offset:1px; }
+input::placeholder{ color:#9A9CA8; }
+
+button{
+  padding:11px 18px;
+  border:1px solid var(--ink);
+  border-radius:3px;
+  background:var(--ink);
+  color:#fff;
+  cursor:pointer;
+  font-family:var(--sans);
+  font-weight:500;
+  font-size:14px;
+  white-space:nowrap;
+}
+button:hover{ background:var(--ink-soft); }
+button:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+button.ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+button.ghost:hover{ background:#FBFAF7; }
+
+#resultado, #estado-contenido{ margin-top:4px; }
+
+.badge{
+  display:inline-block;
+  padding:4px 11px;
+  border-radius:3px;
+  font-size:11.5px;
+  font-weight:600;
+  margin-left:6px;
+}
+.badge.pendiente{ background:var(--amber-bg); color:var(--amber); }
+.badge.trasladada{ background:var(--gold-soft); color:var(--gold); }
+.badge.revision{ background:var(--sage-bg); color:var(--sage); }
+
+.error{ color:var(--brick); font-size:13px; margin:8px 0 0; }
+.hint{ color:var(--slate); font-size:12px; margin-top:18px; line-height:1.6; }
+
+/* Ficha de estado */
+.ficha-titulo{ font-size:15px; font-weight:600; color:var(--ink); margin:14px 0 2px; }
+.ficha-meta{ font-size:12.5px; color:var(--slate); margin:0 0 14px; }
+.ficha-campo{ font-size:13.5px; color:var(--ink-soft); margin:10px 0; line-height:1.5; }
+.ficha-campo strong{ color:var(--ink); }
+
+/* Caja de alerta de tiempo — el único elemento "llamativo" de la interfaz */
+.tiempo-box{
+  margin-top:16px;
+  padding:12px 14px;
+  border-radius:3px;
+  font-size:13px;
+  line-height:1.5;
+}
+.tiempo-box.ok{ background:var(--sage-bg); color:var(--sage); }
+.tiempo-box.alerta{ background:var(--brick-bg); color:var(--brick); font-weight:600; }
+
+/* Historial: línea de tiempo con marcadores */
+.historial{ margin-top:18px; padding-top:16px; border-top:1px solid var(--line); }
+.historial h3{ font-family:var(--serif); font-size:14px; color:var(--ink); margin:0 0 14px; font-weight:600; }
+.historial ul{ list-style:none; padding:0; margin:0; position:relative; }
+.historial ul::before{
+  content:"";
+  position:absolute; left:4px; top:6px; bottom:6px;
+  width:2px; background:var(--line);
+}
+.historial li{
+  position:relative;
+  padding:0 0 18px 24px;
+  font-size:13px;
+  color:var(--ink-soft);
+  line-height:1.5;
+}
+.historial li:last-child{ padding-bottom:0; }
+.historial li::before{
+  content:"";
+  position:absolute; left:0; top:4px;
+  width:9px; height:9px; border-radius:50%;
+  background:var(--card); border:2px solid var(--gold);
+}
+.historial li strong{ color:var(--ink); font-weight:600; }
+.historial .fecha{ color:var(--slate); font-size:11.5px; }
+
+/* Reenvío de documento */
+.reenvio-box{
+  margin-top:18px;
+  padding:16px;
+  border:1px solid var(--gold-soft);
+  background:#FDFBF6;
+  border-radius:3px;
+}
+.reenvio-box p{ margin:0 0 10px; font-size:13px; color:var(--ink-soft); line-height:1.5; }
+.reenvio-box p strong{ color:var(--ink); }
+
+.nav-row{ display:flex; justify-content:space-between; margin-top:22px; gap:10px; }
+
+.screen.hidden{ display:none; }

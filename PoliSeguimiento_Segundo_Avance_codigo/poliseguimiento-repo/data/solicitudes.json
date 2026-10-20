@@ -1,0 +1,146 @@
+{
+  "POL-2026-0417": {
+    "radicado": "POL-2026-0417",
+    "nombreCertificado": "Copia Diploma de Grado",
+    "costo": "$97.200",
+    "estado": "pendiente",
+    "areaActual": "Decanatura de Facultad",
+    "descripcionArea": "La decanatura está confirmando la información académica antes de autorizar la expedición de la copia del diploma.",
+    "fechaRadicacion": "2026-08-12",
+    "diasHabilesEsperados": 8,
+    "historial": [
+      { "area": "Registro y Control Académico", "fecha": "2026-08-12", "accion": "Solicitud radicada" },
+      { "area": "Tesorería", "fecha": "2026-08-13", "accion": "Pago de $97.200 verificado" },
+      { "area": "Decanatura de Facultad", "fecha": "2026-08-14", "accion": "En revisión — pendiente de documento" }
+    ]
+  },
+  "POL-2026-0512": {
+    "radicado": "POL-2026-0512",
+    "nombreCertificado": "Certificado de Notas General - Firma Original",
+    "costo": "$93.400",
+    "estado": "trasladada",
+    "areaActual": "Legalizaciones (Apostilla)",
+    "descripcionArea": "La solicitud fue trasladada aquí porque el documento requiere apostilla para uso en el exterior.",
+    "fechaRadicacion": "2026-08-05",
+    "diasHabilesEsperados": 5,
+    "historial": [
+      { "area": "Registro y Control Académico", "fecha": "2026-08-05", "accion": "Solicitud radicada" },
+      { "area": "Registro y Control Académico", "fecha": "2026-08-06", "accion": "Pago de $93.400 verificado" },
+      { "area": "Legalizaciones (Apostilla)", "fecha": "2026-08-10", "accion": "Trasladada para legalización internacional" }
+    ]
+  },
+  "POL-2026-0603": {
+    "radicado": "POL-2026-0603",
+    "nombreCertificado": "Certificado de Notas por Periodo - Firma Original",
+    "costo": "$27.800",
+    "estado": "en revision",
+    "areaActual": "Registro y Control Académico",
+    "descripcionArea": "La solicitud está siendo procesada directamente por Registro y Control Académico; no requiere revisión de otras áreas.",
+    "fechaRadicacion": "2026-09-28",
+    "diasHabilesEsperados": 5,
+    "historial": [
+      { "area": "Registro y Control Académico", "fecha": "2026-09-28", "accion": "Solicitud radicada" },
+      { "area": "Tesorería", "fecha": "2026-09-29", "accion": "Pago de $27.800 verificado" },
+      { "area": "Registro y Control Académico", "fecha": "2026-09-30", "accion": "En revisión — dentro del tiempo esperado" }
+    ]
+  },
+  "POL-2026-0701": {
+    "radicado": "POL-2026-0701",
+    "nombreCertificado": "Certificado Fecha de Inicio y Terminación Materias",
+    "costo": "$13.700",
+    "estado": "en revision",
+    "areaActual": "Registro y Control Académico",
+    "descripcionArea": "La solicitud está siendo procesada directamente por Registro y Control Académico.",
+    "fechaRadicacion": "2026-10-01",
+    "diasHabilesEsperados": 5,
+    "historial": [
+      { "area": "Registro y Control Académico", "fecha": "2026-10-01", "accion": "Solicitud radicada" },
+      { "area": "Tesorería", "fecha": "2026-10-02", "accion": "Pago de $13.700 verificado" }
+    ]
+  },
+  "POL-2026-0702": {
+    "radicado": "POL-2026-0702",
+    "nombreCertificado": "Certificado ICETEX - Giro Adicional por Carga Académica",
+    "costo": "$13.700",
+    "estado": "trasladada",
+    "areaActual": "ICETEX (Gestión Financiera)",
+    "descripcionArea": "La solicitud fue trasladada al área financiera encargada de confirmar la carga académica ante ICETEX.",
+    "fechaRadicacion": "2026-09-29",
+    "diasHabilesEsperados": 5,
+    "historial": [
+      { "area": "Registro y Control Académico", "fecha": "2026-09-29", "accion": "Solicitud radicada" },
+      { "area": "ICETEX (Gestión Financiera)", "fecha": "2026-10-01", "accion": "Trasladada para confirmar carga académica" }
+    ]
+  },
+  "POL-2026-0703": {
+    "radicado": "POL-2026-0703",
+    "nombreCertificado": "Certificado ICETEX - Giro Adicional por Doble Titulación",
+    "costo": "$13.700",
+    "estado": "pendiente",
+    "areaActual": "Registro y Control Académico",
+    "descripcionArea": "Falta confirmar la matrícula activa en el segundo programa antes de continuar con el giro adicional.",
+    "fechaRadicacion": "2026-08-18",
+    "diasHabilesEsperados": 5,
+    "historial": [
+      { "area": "Registro y Control Académico", "fecha": "2026-08-18", "accion": "Solicitud radicada" },
+      { "area": "Registro y Control Académico", "fecha": "2026-08-19", "accion": "En revisión — pendiente de confirmar doble titulación" }
+    ]
+  },
+  "POL-2026-0704": {
+    "radicado": "POL-2026-0704",
+    "nombreCertificado": "Certificado de Intensidad Horaria Semanal, Inicio y Fin de Semestre",
+    "costo": "$13.700",
+    "estado": "en revision",
+    "areaActual": "Registro y Control Académico",
+    "descripcionArea": "Certificado solicitado para trámite de pensión; está siendo procesado por Registro y Control Académico.",
+    "fechaRadicacion": "2026-10-01",
+    "diasHabilesEsperados": 5,
+    "historial": [
+      { "area": "Registro y Control Académico", "fecha": "2026-10-01", "accion": "Solicitud radicada" },
+      { "area": "Tesorería", "fecha": "2026-10-02", "accion": "Pago de $13.700 verificado" }
+    ]
+  },
+  "POL-2026-0705": {
+    "radicado": "POL-2026-0705",
+    "nombreCertificado": "Certificado de Otros Pagos",
+    "costo": "$13.700",
+    "estado": "en revision",
+    "areaActual": "Tesorería",
+    "descripcionArea": "Tesorería está verificando el histórico de pagos adicionales asociado a la solicitud.",
+    "fechaRadicacion": "2026-10-02",
+    "diasHabilesEsperados": 5,
+    "historial": [
+      { "area": "Registro y Control Académico", "fecha": "2026-10-02", "accion": "Solicitud radicada" },
+      { "area": "Tesorería", "fecha": "2026-10-02", "accion": "En revisión del histórico de pagos" }
+    ]
+  },
+  "POL-2026-0706": {
+    "radicado": "POL-2026-0706",
+    "nombreCertificado": "Certificado de Contenidos Programáticos",
+    "costo": "$59.100",
+    "estado": "en revision",
+    "areaActual": "Decanatura de Facultad",
+    "descripcionArea": "La decanatura está compilando el contenido programático de las materias cursadas, en formato digital.",
+    "fechaRadicacion": "2026-09-30",
+    "diasHabilesEsperados": 8,
+    "historial": [
+      { "area": "Registro y Control Académico", "fecha": "2026-09-30", "accion": "Solicitud radicada" },
+      { "area": "Decanatura de Facultad", "fecha": "2026-10-01", "accion": "En revisión — compilando contenidos" }
+    ]
+  },
+  "POL-2026-0707": {
+    "radicado": "POL-2026-0707",
+    "nombreCertificado": "Copia Acta de Grado",
+    "costo": "$47.700",
+    "estado": "trasladada",
+    "areaActual": "Legalizaciones (Apostilla)",
+    "descripcionArea": "La solicitud fue trasladada aquí porque el documento requiere apostilla para uso en el exterior.",
+    "fechaRadicacion": "2026-08-20",
+    "diasHabilesEsperados": 8,
+    "historial": [
+      { "area": "Registro y Control Académico", "fecha": "2026-08-20", "accion": "Solicitud radicada" },
+      { "area": "Tesorería", "fecha": "2026-08-21", "accion": "Pago de $47.700 verificado" },
+      { "area": "Legalizaciones (Apostilla)", "fecha": "2026-08-25", "accion": "Trasladada para legalización internacional" }
+    ]
+  }
+}
