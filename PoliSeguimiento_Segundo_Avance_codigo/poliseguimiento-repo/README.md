@@ -87,3 +87,29 @@ poliseguimiento/
 ## Equipo
 
 Samuel Araque · Alejandro Taborda · John Cortes — Politécnico Grancolombiano, Práctica Aplicada de Sistemas.
+
+## Cómo ejecutar el proyecto
+
+Requisitos: Node.js (versión LTS).
+
+1. Entra a la carpeta del proyecto:
+```bash
+   cd PoliSeguimiento_Segundo_Avance_codigo/poliseguimiento-repo
+```
+2. Instala las dependencias:
+```bash
+   npm install
+```
+3. Corre las pruebas:
+```bash
+   npm test
+```
+4. Inicia el servidor en modo demostración (usa la fecha fija 2026-10-02):
+```bash
+   npm run demo
+```
+   Para usar la fecha real de hoy, ejecuta `npm start`.
+   
+5. Abre en el navegador: http://localhost:3000
+
+Por defecto el servidor usa el puerto 3000. Para cambiarlo, define la variable de entorno `PORT`.
